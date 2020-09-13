@@ -1,0 +1,121 @@
+.login {
+	text-align: center;
+}
+
+.navbar {
+	width: 100%;
+	height: 6vh;
+	background-color: #fff;
+	z-index: 90;
+	display: flex;
+}
+
+.nav {
+	width: 100%;
+	justify-content: flex-end;
+}
+
+.brand-img {
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.nav-icons {
+	color: #000;
+	margin: 0 5px;
+}
+
+.profile-header {
+	margin: 5vh 0;
+}
+
+.profile-details {
+	padding: 0 5vh;
+	width: 100%;
+}
+
+.profile-pic {
+	width: 100%;
+	height: 100%;
+}
+
+.profile-account {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+	text-align: center;
+	width: 50%;
+}
+
+.profile-name {
+	font-weight: 300;
+	font-size: 28px;
+	line-height: 32px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #4b4a4a;
+	display: inline;
+	margin: auto 0;
+}
+
+.settings-btn {
+	display: inline-block;
+	background-color: inherit;
+	border: none;
+	vertical-align: baseline;
+}
+
+.profile-status {
+	margin-top: 15px;
+	width: 70%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.profile-desc {
+	width: 75%;
+	flex-wrap: wrap;
+}
+
+.posts {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.post {
+	margin: 20px 20px;
+	box-shadow: 2px 2px #ededed;
+	border-radius: 5px;
+	transition: 0.2s ease-in-out;
+}
+
+.post:hover {
+	transform: scale(1.1);
+}
+
+.post-overlay {
+	background-color: rgba(80, 81, 82, 0.2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.post-likes {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.likes-number {
+	font-size: 28px;
+	margin: auto 10px;
+}
+
+.like-icon {
+	color: #e93d3d;
+}
