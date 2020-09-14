@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import Settings from '../Settings/Settings';
 
 const ProfileHeader = (props) => {

@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 import { AuthContext } from '../../Auth';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import Container from 'react-bootstrap/Container';
 
 const Login = ({ history }) => {
 	const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -29,10 +30,12 @@ const Login = ({ history }) => {
 	}
 
 	return (
-		<div className="login">
-			<h1>Login</h1>
-			<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-		</div>
+		<Container>
+			<div className="login">
+				<h1>Login</h1>
+				<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+			</div>
+		</Container>
 	);
 };
 
