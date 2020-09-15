@@ -8,6 +8,7 @@ import Posts from '../components/Posts/Posts';
 import axios from 'axios';
 
 const Home = (props) => {
+	const [ isDataReady, setIsDataReady ] = useState(false);
 	const [ profilePic, setProfilePic ] = useState('');
 	const [ profileDesc, setProfileDesc ] = useState('');
 	const [ followers, setFollowers ] = useState(0);
@@ -15,7 +16,7 @@ const Home = (props) => {
 	const [ posts, setPosts ] = useState([]);
 	const [ name, setName ] = useState('');
 
-	const getUserData = () => {
+	const getUserData = async () => {
 		const currentUser = firebase.auth().currentUser;
 		const currentUserUID = currentUser.uid;
 		const queryUrl = `https://instagram-clone-92627.firebaseio.com/users/${currentUserUID}`;
@@ -24,56 +25,40 @@ const Home = (props) => {
 		setProfilePic(firebase.auth().currentUser.photoURL);
 
 		axios
-			.get(`${queryUrl}/description.json`)
+			.get(`${queryUrl}.json`)
 			.then((result) => {
-				setProfileDesc(result.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-
-		axios
-			.get(`${queryUrl}/followers.json`)
-			.then((result) => {
-				setFollowers(result.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-		axios
-			.get(`${queryUrl}/following.json`)
-			.then((result) => {
-				console.log('Here');
-				console.log(result.data);
-				setFollowing(result.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-
-		axios
-			.get(`${queryUrl}/posts.json`)
-			.then((result) => {
-				setPosts(result.data);
+				setIsDataReady(true);
+				if (result.data) {
+					const userProfile = Object.values(result.data)[0];
+					setProfileDesc(userProfile['description']);
+					setFollowers(userProfile['followers']);
+					setFollowing(userProfile['following']);
+					setPosts(userProfile['posts']);
+				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
 
-	useEffect(() => {
-		getUserData();
-	}, []);
+	useEffect(
+		() => {
+			getUserData();
+		},
+		[ isDataReady ]
+	);
 
 	return (
 		<React.Fragment>
 			<NavigationBar />
 			<Container>
+				{console.log('Render')}
+
 				<ProfileHeader
 					name={name}
 					profilePic={profilePic}
 					profileDesc={profileDesc}
-					postsCount={posts.length}
+					postsCount={posts ? posts.length : 0}
 					followers={followers}
 					following={following}
 				/>

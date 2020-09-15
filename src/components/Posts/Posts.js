@@ -3,13 +3,15 @@ import React from 'react';
 import Post from './Post/Post';
 
 const Posts = (props) => {
-	return (
-		<div className="posts">
-			{props.posts.map((post, index) => {
-				return <Post img={post} />;
-			})}
-		</div>
-	);
+	let Posts = null;
+
+	if (props.posts) {
+		Posts = props.posts.map((post) => {
+			return <Post img={post} key={post} />;
+		});
+	}
+
+	return <div className="posts">{Posts}</div>;
 };
 
 export default Posts;
